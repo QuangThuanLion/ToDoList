@@ -96,6 +96,8 @@ public class WorkServiceImpl implements WorkServiceInterface {
 		
 		return workDTO;
 	}
+	
+	
 
 	/**
 	 * @param id
@@ -111,5 +113,20 @@ public class WorkServiceImpl implements WorkServiceInterface {
 		}
 		
 		workRepository.deleteById(id);
+	}
+
+	/**
+	 * @param id
+	 * @throws WorkNotFoundException 
+	 */
+	@Override
+	public WorkDTO findById(Integer id) throws WorkNotFoundException {
+		boolean existsById = workRepository.existsById(id);
+		
+		if (!existsById) {
+			throw new WorkNotFoundException("Could not find any work with ID " + id);
+		}
+		Work work = workRepository.findById(id).get();
+		return this.convertWorkEntityToDTO(work);
 	}
 }

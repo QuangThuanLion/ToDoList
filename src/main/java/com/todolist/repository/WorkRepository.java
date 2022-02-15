@@ -19,5 +19,4 @@ public interface WorkRepository extends PagingAndSortingRepository<Work, Integer
 	 * @return
 	 */
 	Long countById(Integer id);
-
 }

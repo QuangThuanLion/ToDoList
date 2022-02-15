@@ -24,7 +24,14 @@ public interface WorkServiceInterface {
 	
 	/**
 	 * @param id
+	 * @return
 	 * @throws WorkNotFoundException 
 	 */
-	void delete(Integer id) throws WorkNotFoundException; 
+	WorkDTO findById(Integer id) throws WorkNotFoundException;
+	
+	/**
+	 * @param id
+	 * @throws WorkNotFoundException 
+	 */
+	void delete(Integer id) throws WorkNotFoundException;
 }
