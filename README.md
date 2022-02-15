@@ -7,7 +7,10 @@
 ## II. Config source code
 - Clone source code from repository on github
 - Update file application.properties including username and password for the same your account my sql in the local computer.
-### III. API for the project
+### III. Swagger API
+- Swagger UI: http://localhost:8080/todolist/swagger-ui.html#
+- Swagger Doc: http://localhost:8080/todolist/v2/api-docs
+#### IV. API for the project
 1. API for the get list works
 - Method: [GET]
 - Request URL: http://localhost:8080/todolist/api/v1/work?pageNumber=1&sortBy=workName&sortDir=asc

@@ -5,7 +5,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,6 +78,29 @@ public class AppRestController {
 		}
 		
 		return response;
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(value = "/work/{id}")
+	public ResponseEntity<ApiResponse> findById(@PathVariable(name = "id") Integer id) {
+		ApiResponse response = new ApiResponse();
+		HttpStatus status = HttpStatus.OK;
+		
+		try {
+			WorkDTO workDTO = workServiceInterface.findById(id);
+			response.setData(workDTO);
+			response.setMessage(Constants.MESSAGE_SUCCESS);
+			response.setSuccess(true);
+		} catch (WorkNotFoundException exception) {
+			response.setMessage(exception.getMessage());
+			response.setSuccess(false);
+			status = HttpStatus.BAD_REQUEST;
+		}
+		
+		return new ResponseEntity<ApiResponse>(response, status);
 	}
 	
 	/**
