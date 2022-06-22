@@ -17,7 +17,7 @@ import com.todolist.entity.Work;
 import com.todolist.entity.WorkStatus;
 import com.todolist.exception.WorkNotFoundException;
 import com.todolist.repository.WorkRepository;
-import com.todolist.service.WorkServiceInterface;
+import com.todolist.service.WorkService;
 
 /**
  * @author Admin
@@ -25,7 +25,7 @@ import com.todolist.service.WorkServiceInterface;
  */
 @Service(value = "workServiceImpl")
 @Transactional(rollbackFor = Exception.class)
-public class WorkServiceImpl implements WorkServiceInterface {
+public class WorkServiceImpl implements WorkService {
 
 	private static final int WORK_PER_PAGE = 3;
 	

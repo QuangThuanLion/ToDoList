@@ -9,7 +9,7 @@ import com.todolist.exception.WorkNotFoundException;
  * @author Admin
  *
  */
-public interface WorkServiceInterface {
+public interface WorkService {
 
 	/**
 	 * @return
