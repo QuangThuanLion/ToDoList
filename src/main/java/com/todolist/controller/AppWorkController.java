@@ -1,5 +1,6 @@
 package com.todolist.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.todolist.dto.ApiResponse;
 import com.todolist.dto.WorkDTO;
@@ -81,6 +83,24 @@ public class AppWorkController {
 	}
 	
 	/**
+	 * @param workDTO
+	 * @return
+	 */
+	@PostMapping(value = "/works", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> createWork(@RequestBody WorkDTO workDTO) {
+		WorkDTO savedWork = workServiceInterface.createWork(workDTO);
+		
+		//purpose return in the header, attached location in header
+		URI location = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(savedWork.getId())
+				.toUri();
+		
+		return ResponseEntity.created(location).build();
+	}
+
+	/**
 	 * @param id
 	 * @return
 	 */
@@ -101,6 +121,48 @@ public class AppWorkController {
 		}
 		
 		return new ResponseEntity<ApiResponse>(response, status);
+	}
+	
+//	/**
+//	 * @param id
+//	 * @return
+//	 */
+//	@GetMapping(value = "/work/way3/{id}")
+//	public EntityModel<ApiResponse> findByIdWay3(@PathVariable(name = "id") Integer id) {
+//		ApiResponse response = new ApiResponse();
+//		
+//		try {
+//			WorkDTO workDTO = workServiceInterface.findById(id);
+//			response.setData(workDTO);
+//			response.setMessage(Constants.MESSAGE_SUCCESS);
+//			response.setSuccess(true);
+//		} catch (WorkNotFoundException exception) {
+//			response.setMessage(exception.getMessage());
+//			response.setSuccess(false);
+//		}
+//		
+//		EntityModel<ApiResponse> model = EntityModel.of(response);
+//		
+//		WebMvcLinkBuilder linkToUsers = linkTo(methodOn(this.getClass()).delete(1));
+//		model.add(linkToUsers.withRel("Delete-User"));
+//		
+//		return model;
+//	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(value = "/works/{id}")
+	public ApiResponse findByIdWay2(@PathVariable(name = "id") Integer id) {
+		ApiResponse response = new ApiResponse();
+		
+		WorkDTO workDTO = workServiceInterface.findById(id);
+		response.setData(workDTO);
+		response.setMessage(Constants.MESSAGE_SUCCESS);
+		response.setSuccess(true);
+		
+		return response;
 	}
 	
 	/**

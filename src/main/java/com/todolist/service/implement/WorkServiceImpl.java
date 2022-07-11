@@ -120,7 +120,7 @@ public class WorkServiceImpl implements WorkService {
 	 * @throws WorkNotFoundException 
 	 */
 	@Override
-	public WorkDTO findById(Integer id) throws WorkNotFoundException {
+	public WorkDTO findById(Integer id) {
 		boolean existsById = workRepository.existsById(id);
 		
 		if (!existsById) {

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
@@ -55,6 +56,7 @@ public class WorkRepositoryTest {
 		
 		Work savedWork = workRepository.save(work);
 		
+		Mockito.verify(workRepository).save(work);
 		assertThat(savedWork.getId()).isGreaterThan(0);
 		assertThat(savedWork).isNotNull();
 	}
@@ -67,6 +69,7 @@ public class WorkRepositoryTest {
 		Iterable<Work> findAll = workRepository.findAll();
 		findAll.forEach(System.out::println);
 		
+		Mockito.verify(workRepository).findAll();
 		assertThat(findAll).size().isGreaterThan(1);
 		assertThat(findAll).isNotNull();
 	}
