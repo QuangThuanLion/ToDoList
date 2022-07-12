@@ -1,5 +1,4 @@
 version: '2'
-
 services:
   mysql-todo-v1:
     container_name: mysql-todo-v2
@@ -9,12 +8,11 @@ services:
     networks:
       - todolist-mysql
     volumes:
-      - mysql-data:/var/lib/mysql
+      - /Users/admin/Documents/STORE_DATA:/var/lib/mysql
       - ./database.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: todolist
-
   app-todo-v1:
     container_name: app-todo-v2
     build:
@@ -34,7 +32,3 @@ services:
 
 networks:
   todolist-mysql:
-
-volumes:
-  mysql-data:
-    driver: local

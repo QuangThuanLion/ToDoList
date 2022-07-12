@@ -1,3 +1,7 @@
+#runing to generate jar file
+mvn clean package -DskipTests
+
+#runing to create images from docker-compose.yml
 version: '2'
 
 services:
