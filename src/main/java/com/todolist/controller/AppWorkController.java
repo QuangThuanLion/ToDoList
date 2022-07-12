@@ -25,6 +25,9 @@ import com.todolist.exception.WorkNotFoundException;
 import com.todolist.service.WorkService;
 import com.todolist.util.Constants;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * @author Admin
  *
@@ -44,6 +47,15 @@ public class AppWorkController {
 	 * @param sortDir
 	 * @return
 	 */
+	@ApiOperation(value = "Get all Works" , response = ApiResponse.class, tags = "App-Work-Controller")
+	@ApiResponses(value = {
+			@io.swagger.annotations.ApiResponse(code = 200, message = "Success | OK"),
+			@io.swagger.annotations.ApiResponse(code = 401, message = "Not Authorized !!"),
+			@io.swagger.annotations.ApiResponse(code = 403, message = "Forbdiden !!"),
+			@io.swagger.annotations.ApiResponse(code = 404, message = "Not Found !!!"),
+			@io.swagger.annotations.ApiResponse(code = 405, message = "Method Not Allow !!"),
+			@io.swagger.annotations.ApiResponse(code = 500, message = "Interval Error")
+	})
 	@GetMapping(value = "/work", produces = MediaType.APPLICATION_JSON_VALUE, params = {"pageNumber", "sortBy", "sortDir"})
 	public ApiResponse listByPage(@RequestParam Integer pageNumber, String sortBy, String sortDir) {
 		ApiResponse response = new ApiResponse();
@@ -65,6 +77,15 @@ public class AppWorkController {
 	 * @param workDTO
 	 * @return
 	 */
+	@ApiOperation(value = "Get all Works" , response = ApiResponse.class, tags = "App-Work-Controller")
+	@ApiResponses(value = {
+			@io.swagger.annotations.ApiResponse(code = 200, message = "Success | OK"),
+			@io.swagger.annotations.ApiResponse(code = 401, message = "Not Authorized !!"),
+			@io.swagger.annotations.ApiResponse(code = 403, message = "Forbdiden !!"),
+			@io.swagger.annotations.ApiResponse(code = 404, message = "Not Found !!!"),
+			@io.swagger.annotations.ApiResponse(code = 405, message = "Method Not Allow !!"),
+			@io.swagger.annotations.ApiResponse(code = 500, message = "Interval Error")
+	})
 	@PostMapping(value = "/work", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ApiResponse saveWork(@RequestBody WorkDTO workDTO) {
 		ApiResponse response = new ApiResponse();
@@ -86,6 +107,15 @@ public class AppWorkController {
 	 * @param workDTO
 	 * @return
 	 */
+	@ApiOperation(value = "Get all Works" , response = ApiResponse.class, tags = "App-Work-Controller")
+	@ApiResponses(value = {
+			@io.swagger.annotations.ApiResponse(code = 200, message = "Success | OK"),
+			@io.swagger.annotations.ApiResponse(code = 401, message = "Not Authorized !!"),
+			@io.swagger.annotations.ApiResponse(code = 403, message = "Forbdiden !!"),
+			@io.swagger.annotations.ApiResponse(code = 404, message = "Not Found !!!"),
+			@io.swagger.annotations.ApiResponse(code = 405, message = "Method Not Allow !!"),
+			@io.swagger.annotations.ApiResponse(code = 500, message = "Interval Error")
+	})
 	@PostMapping(value = "/works", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> createWork(@RequestBody WorkDTO workDTO) {
 		WorkDTO savedWork = workServiceInterface.createWork(workDTO);
@@ -104,6 +134,15 @@ public class AppWorkController {
 	 * @param id
 	 * @return
 	 */
+	@ApiOperation(value = "Get all Works" , response = ApiResponse.class, tags = "App-Work-Controller")
+	@ApiResponses(value = {
+			@io.swagger.annotations.ApiResponse(code = 200, message = "Success | OK"),
+			@io.swagger.annotations.ApiResponse(code = 401, message = "Not Authorized !!"),
+			@io.swagger.annotations.ApiResponse(code = 403, message = "Forbdiden !!"),
+			@io.swagger.annotations.ApiResponse(code = 404, message = "Not Found !!!"),
+			@io.swagger.annotations.ApiResponse(code = 405, message = "Method Not Allow !!"),
+			@io.swagger.annotations.ApiResponse(code = 500, message = "Interval Error")
+	})
 	@GetMapping(value = "/work/{id}")
 	public ResponseEntity<ApiResponse> findById(@PathVariable(name = "id") Integer id) {
 		ApiResponse response = new ApiResponse();
@@ -153,6 +192,15 @@ public class AppWorkController {
 	 * @param id
 	 * @return
 	 */
+	@ApiOperation(value = "Get all Works" , response = ApiResponse.class, tags = "App-Work-Controller")
+	@ApiResponses(value = {
+			@io.swagger.annotations.ApiResponse(code = 200, message = "Success | OK"),
+			@io.swagger.annotations.ApiResponse(code = 401, message = "Not Authorized !!"),
+			@io.swagger.annotations.ApiResponse(code = 403, message = "Forbdiden !!"),
+			@io.swagger.annotations.ApiResponse(code = 404, message = "Not Found !!!"),
+			@io.swagger.annotations.ApiResponse(code = 405, message = "Method Not Allow !!"),
+			@io.swagger.annotations.ApiResponse(code = 500, message = "Interval Error")
+	})
 	@GetMapping(value = "/works/{id}")
 	public ApiResponse findByIdWay2(@PathVariable(name = "id") Integer id) {
 		ApiResponse response = new ApiResponse();
@@ -169,6 +217,15 @@ public class AppWorkController {
 	 * @param id
 	 * @return
 	 */
+	@ApiOperation(value = "Get all Works" , response = ApiResponse.class, tags = "App-Work-Controller")
+	@ApiResponses(value = {
+			@io.swagger.annotations.ApiResponse(code = 200, message = "Success | OK"),
+			@io.swagger.annotations.ApiResponse(code = 401, message = "Not Authorized !!"),
+			@io.swagger.annotations.ApiResponse(code = 403, message = "Forbdiden !!"),
+			@io.swagger.annotations.ApiResponse(code = 404, message = "Not Found !!!"),
+			@io.swagger.annotations.ApiResponse(code = 405, message = "Method Not Allow !!"),
+			@io.swagger.annotations.ApiResponse(code = 500, message = "Interval Error")
+	})
 	@DeleteMapping(value = "/work/{id}")
 	public ApiResponse delete(@PathVariable(name = "id") Integer id) {
 		final String LOG_STRING = "DELETE /api/v1/work/" + id;

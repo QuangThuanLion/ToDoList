@@ -7,10 +7,17 @@
 ## II. Config source code
 - Clone source code from repository on github
 - Update file application.properties including username and password for the same your account my sql in the local computer.
-### III. Swagger API
+## III. Building source
+- Run file deployed.sh to building jar file and create images service from docker-compose.yml
+- If do not success. Excute for step by step below there.
+    + Step 1: From source run command: mvn clean package -DskipTests
+    + Step 2: From source run command docker-compose -f docker-compose.yml up
+    + Unless 1: From the terminal run command docker run mysql:8 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=todolist
+    + Unless 2: From source run command docker-compose -f docker-compose.yml up and separated two line when we building.
+### IV. Swagger API
 - Swagger UI: http://localhost:8080/todolist/swagger-ui.html#
 - Swagger Doc: http://localhost:8080/todolist/v2/api-docs
-#### IV. API for the project
+#### V. API for the project
 1. API for the get list works
 - Method: [GET]
 - Request URL: http://localhost:8080/todolist/api/v1/work?pageNumber=1&sortBy=workName&sortDir=asc
